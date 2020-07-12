@@ -189,8 +189,10 @@ p {
                                     </ul>
                                 </td>
                                 <td class="cell100 column10" style="width: 10%;">
-                                    <a href="#myModal" data-toggle="modal" class="btn-danger btn-sm mt-3">Batalkan</a>
+                                    <a href="<?php echo base_url().'step_pemesanan/edit/'. $p['id'] ?>" type="button"  class="btn-success btn-sm" style="padding:5px 19px;">Ubah</a><br><br>
+                                    <a href="#myModal" data-toggle="modal" class="btn-danger btn-sm">Batalkan</a>
                                 </td>
+                                
                             </tr>
                             <?php endforeach; ?>
 							</tbody>

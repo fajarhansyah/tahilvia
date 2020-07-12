@@ -70,5 +70,11 @@ class Step_pemesanan extends CI_Controller{
     $this->db->insert('menu_tambahan', $data3);
     redirect('halaman_succes');
   }
+  public function edit($id){
+    $data['menuitem'] = $this->model_menu_item->tampil_data()->result();
+    $query_pemesanan = $this->db->query("SELECT tbl_transaksi.*, menu_tambahan.tidak_ada, menu_tambahan.noda_makanan, menu_tambahan.noda_minyak, menu_tambahan.noda_hewan, menu_tambahan.lainnya FROM tbl_transaksi LEFT JOIN menu_tambahan on tbl_transaksi.id = menu_tambahan.id_transaksi WHERE menu_tambahan.id_transaksi = $id");
+    $data['pemesanan'] = $query_pemesanan->result_array();
+		$this->load->view('edit-step_pemesanan', $data);
+	  }
 }
  ?>

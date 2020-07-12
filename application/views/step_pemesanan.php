@@ -206,18 +206,18 @@ and is wrapped around the whole page content, except for the footer in this exam
             <span style="font-weight:bold;"><?php echo $mi->nama ?></span><br>
             <span><?php echo $mi->satuan ?></span><br>
             <span style="font-size:12px">Rp <?php echo number_format($mi->harga, 0,',','.')?></span>
-            <input type="hidden" class="nama_unit" name="nama_unit[]" id="unit-1" value="<?php echo $mi->nama ?>">
-            <input type="hidden" class="harga_unit" name="harga_unit[]" id="harga-1" value="<?php echo $mi->harga?>">
+            <input type="hidden" class="nama_unit" name="nama_unit[]" id="unit-<?= $mi->id ?>" value="<?php echo $mi->nama ?>">
+            <input type="hidden" class="harga_unit" name="harga_unit[]" id="harga-<?= $mi->id ?>" value="<?php echo $mi->harga?>">
           </div>
           <div class="input-group" style="width:35%;margin-top:3%">
             <span class="input-group-btn">
-              <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant" style="padding: 5px;">
+              <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant<?= $mi->id ?>" style="padding: 5px;">
                 <span class="glyphicon glyphicon-minus"></span>
               </button>
             </span>
-            <input type="text" name="quant[]" id="quant" class="form-control input-number" value="0" min="0" max="9" style="margin-bottom: 0px;">
+            <input type="text" name="quant[]" id="quant<?= $mi->id ?>" class="form-control input-number" value="0" min="0" max="9" style="margin-bottom: 0px;">
             <span class="input-group-btn">
-              <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant" style="padding: 5px;">
+              <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant<?= $mi->id ?>" style="padding: 5px;">
                 <span class="glyphicon glyphicon-plus"></span>
               </button>
             </span>
