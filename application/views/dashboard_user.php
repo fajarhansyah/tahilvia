@@ -15,10 +15,10 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#layanankami">Layanan Kami</a></li>
           <li><a href="#pricing">Cara Pemesanan</a></li>
-          <li><a href="http://localhost/tahilvia/index.php/dashboard_user/data_pemesanan">Data Pemesanan</a></li>
+          <li><?php echo anchor('http://localhost/tahilvia/index.php/dashboard_user/data_pemesanan/'.$this->session->userdata('nama'), '<div>Data Pemesanan</div>') ?></li>
           <?php if($this->session->userdata('username')) { ?>
               <li>
-                <a> Selamat Datang <span style="font-weight:100;"><?php echo $this->session->userdata('username') ?></span></a>
+                <a> Selamat Datang <span style="font-weight:100;"><?php echo $this->session->userdata('nama') ?></span></a>
 
               </li>
               <li>
@@ -201,7 +201,7 @@
     </div>
   </section>
   <!--/ Faculity member-->
-
+  <input type="text"  value=""/>
   <!--Pricing-->
   <section id="pricing" class="section-padding">
     <div class="container">

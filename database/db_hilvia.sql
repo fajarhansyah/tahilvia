@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 02 Apr 2020 pada 01.07
+-- Generation Time: 18 Jul 2020 pada 18.51
 -- Versi Server: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -39,8 +39,8 @@ CREATE TABLE IF NOT EXISTS `menu_item` (
 --
 
 INSERT INTO `menu_item` (`id`, `nama`, `gambar`, `satuan`, `harga`) VALUES
-(4, 'tes ', 'course05.jpg', 'per kursi', '100000'),
-(5, 'Alfian', 'course06.jpg', 'per kursi', '10000');
+(4, 'Meja', 'course05.jpg', 'per kursi', '100000'),
+(5, 'Kursi', 'course06.jpg', 'per kursi', '10000');
 
 -- --------------------------------------------------------
 
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `menu_tambahan` (
   `noda_minyak` varchar(255) DEFAULT NULL,
   `noda_hewan` varchar(255) DEFAULT NULL,
   `lainnya` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `menu_tambahan`
@@ -64,9 +64,12 @@ CREATE TABLE IF NOT EXISTS `menu_tambahan` (
 
 INSERT INTO `menu_tambahan` (`id`, `id_transaksi`, `tidak_ada`, `noda_makanan`, `noda_minyak`, `noda_hewan`, `lainnya`) VALUES
 (1, 1, NULL, 'Noda Makanan', 'Noda Minyak', 'Noda Hewan', ''),
-(2, 2, NULL, 'Noda Makanan', 'Noda Minyak', 'Noda Hewan', ''),
-(3, 3, NULL, NULL, NULL, NULL, ''),
-(4, 4, NULL, 'Noda Makanan', NULL, NULL, '');
+(2, 2, 'Tidak ada', 'Noda Makanan', 'Noda Minyak', NULL, ''),
+(3, 3, 'Tidak ada', NULL, NULL, NULL, ''),
+(4, 4, NULL, 'Noda Makanan', NULL, 'Noda Hewan', ''),
+(5, 5, NULL, 'Noda Makanan', NULL, 'Noda Hewan', ''),
+(6, 6, NULL, NULL, 'Noda Minyak', 'Noda Hewan', ''),
+(7, 7, NULL, NULL, NULL, 'Noda Hewan', '');
 
 -- --------------------------------------------------------
 
@@ -83,17 +86,15 @@ CREATE TABLE IF NOT EXISTS `tbl_transaksi` (
   `alamat` varchar(255) NOT NULL,
   `total` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tbl_transaksi`
 --
 
 INSERT INTO `tbl_transaksi` (`id`, `nama`, `no_telp`, `tanggal`, `jam`, `alamat`, `total`, `status`) VALUES
-(1, 'Fajar', '087865018862', '2020-05-21', '15.00 - 18.00', 'Malang', '217000', 'setuju'),
-(2, 'Fajar', '087865018862', '2020-05-21', '15.00 - 18.00', 'Malang', '217000', 'setuju'),
-(3, 'Alfian', '087865018862', '2020-05-07', '15.00 - 18.00', 'Jokbang', '65000', 'setuju'),
-(4, 'Fajar', '948534534', '2020-05-07', '12.00 - 14.00', 'Malang', '152000', 'setuju');
+(6, 'user', '087865018862', '2020-07-16', '', 'aaaaa', 'NaN', ''),
+(7, 'user', '087865018862', '2020-07-09', '15.00 - 18.00', 'aaaa', '250000', '');
 
 -- --------------------------------------------------------
 
@@ -104,31 +105,29 @@ INSERT INTO `tbl_transaksi` (`id`, `nama`, `no_telp`, `tanggal`, `jam`, `alamat`
 CREATE TABLE IF NOT EXISTS `tbl_transaksi_jasa` (
   `id` int(11) NOT NULL,
   `id_transaksi` int(11) NOT NULL,
+  `id_item` int(11) NOT NULL,
   `nama_unit` varchar(255) NOT NULL,
   `harga_unit` varchar(255) NOT NULL,
   `jumlah_unit` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tbl_transaksi_jasa`
 --
 
-INSERT INTO `tbl_transaksi_jasa` (`id`, `id_transaksi`, `nama_unit`, `harga_unit`, `jumlah_unit`) VALUES
-(1, 1, 'Sofa Standar', '30000', '1'),
-(2, 1, 'Sofa Jumbo', '35000', '1'),
-(3, 1, 'Sofa Bed', '130000', '1'),
-(4, 1, 'Bantalan Sofa Besar', '15000', '1'),
-(5, 1, 'Bantalan Sofa Kecil', '7000', '1'),
-(6, 2, 'Sofa Standar', '30000', '1'),
-(7, 2, 'Sofa Jumbo', '35000', '1'),
-(8, 2, 'Sofa Bed', '130000', '1'),
-(9, 2, 'Bantalan Sofa Besar', '15000', '1'),
-(10, 2, 'Bantalan Sofa Kecil', '7000', '1'),
-(11, 3, 'Sofa Standar', '30000', '1'),
-(12, 3, 'Sofa Jumbo', '35000', '1'),
-(13, 4, 'Sofa Bed', '130000', '1'),
-(14, 4, 'Bantalan Sofa Besar', '15000', '1'),
-(15, 4, 'Bantalan Sofa Kecil', '7000', '1');
+INSERT INTO `tbl_transaksi_jasa` (`id`, `id_transaksi`, `id_item`, `nama_unit`, `harga_unit`, `jumlah_unit`) VALUES
+(1, 1, 4, 'Meja', '100000', '3'),
+(2, 1, 5, 'Kursi', '10000', '2'),
+(3, 2, 4, 'Meja', '100000', '2'),
+(4, 2, 5, 'Meja', '100000', '3'),
+(5, 3, 4, 'Meja', '100000', '2'),
+(6, 3, 5, 'Kursi', '10000', '2'),
+(7, 4, 4, 'Meja', '100000', '6'),
+(8, 4, 5, 'Kursi', '10000', '5'),
+(9, 5, 4, 'Meja', '100000', '1'),
+(10, 6, 4, 'Meja', '100000', '2'),
+(11, 7, 4, 'Meja', '100000', '2'),
+(12, 7, 5, 'Kursi', '10000', '5');
 
 -- --------------------------------------------------------
 
@@ -143,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `tb_user` (
   `no_telp` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tb_user`
@@ -151,7 +150,9 @@ CREATE TABLE IF NOT EXISTS `tb_user` (
 
 INSERT INTO `tb_user` (`id`, `nama`, `username`, `no_telp`, `password`, `role_id`) VALUES
 (1, 'admin', 'admin', '087865018862', 'admin', 1),
-(2, 'user', 'user', '087865018862', 'user', 2);
+(2, 'user', 'user', '087865018862', 'user', 2),
+(3, 'Fajar', 'fajarhansyah1@gmail.com', '08676756744', 'wepes3000g', 2),
+(4, 'bambang', 'bambang', '098596859685', 'wewewe', 2);
 
 --
 -- Indexes for dumped tables
@@ -200,22 +201,22 @@ ALTER TABLE `menu_item`
 -- AUTO_INCREMENT for table `menu_tambahan`
 --
 ALTER TABLE `menu_tambahan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tbl_transaksi`
 --
 ALTER TABLE `tbl_transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tbl_transaksi_jasa`
 --
 ALTER TABLE `tbl_transaksi_jasa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

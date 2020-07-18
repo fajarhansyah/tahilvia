@@ -143,6 +143,19 @@
     #target {
         width: 345px;
     }
+    .button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button1 {background-color: #FFFFFF;} /* Green */
 </style>
 
 
@@ -162,7 +175,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 
 
         <!-- Grid -->
-        <form id="msform" action="<?php echo base_url() . 'step_pemesanan/tambah_proses_pemesanan' ?>" method="post">
+        <form id="msform" action="<?php echo base_url() . 'step_pemesanan/update' ?>" method="post">
             <!-- progressbar -->
             <ul id="progressbar">
                 <!-- <li class="active">Account Setup</li>
@@ -180,7 +193,6 @@ and is wrapped around the whole page content, except for the footer in this exam
                 <h3 style="text-align: left;">Apakah ada noda ?</h3>
                 <?php
                 foreach ($pemesanan as $key => $qwe) {
-                    
                     $tidakada = 'unchecked';
                     $nodamakanan = 'unchecked';
                     $nodaminyak = 'unchecked';
@@ -199,8 +211,10 @@ and is wrapped around the whole page content, except for the footer in this exam
                     }  if ($select_4 == 'Noda Hewan') {
                         $nodahewan = 'checked';
                     } 
-                }
+                } 
                 ?>
+                <input type="hidden" name="id" class="form-control" value="<?php echo $qwe['id'] ?>">
+                <input type="hidden" name="id_tambahan" class="form-control" value="<?php echo $qwe['id_tambahan'] ?>">
                 <div class="custom-control custom-checkbox mr-sm-2" style="text-align: left;">
                     <input type="checkbox" class="custom-control-input" id="customControlAutosizing" name="tidak_ada" value="Tidak ada" style="width: 10%;" <?= $tidakada ?>>
                     <label class="custom-control-label" for="customControlAutosizing">Tidak Ada</label>
@@ -224,27 +238,34 @@ and is wrapped around the whole page content, except for the footer in this exam
                 <hr>
                 <?php foreach ($menuitem as $mi) :
                   $id_transaksi = $qwe['id'];
-                  $ruwet = '';
                   $transaksi_jasa = $this->db->query("SELECT * FROM tbl_transaksi_jasa WHERE id_transaksi = '$id_transaksi'")->result_array();
+                //   print_r($transaksi_jasa[0]['id']);
+                //   die();
+                    $id_unit= '';
+                    $nama_unit= '';
+                    $harga_unit= '';
+                    $jumlah_unit= '';
                   foreach ($transaksi_jasa as $key => $tj) {
-                    
-                    if($mi->id == $tj['jumlah_unit']){
-                        $ruwet= $tj['jumlah_unit'];
+                    // print_r($tj['id']);
+                    if($mi->id == $tj['id_item']){
+                        $id_unit= $tj['id'];
+                        $nama_unit= $tj['nama_unit'];
+                        $harga_unit= $tj['harga_unit'];
+                        $jumlah_unit= $tj['jumlah_unit'];
                     }
-                    print_r($ruwet);
                   }
                   
                  
                     ?>
-                    
                     <div class="custom-control custom-checkbox mr-sm-2" style="text-align: left;display: flex;">
                         <img src="<?php echo base_url() . 'uploads/' . $mi->gambar ?>" class="rounded float-left" alt="..." style="width: 50px;height: 50px;">
                         <div style="width:38%;margin-left:20px;">
                             <span style="font-weight:bold;"><?php echo $mi->nama ?></span><br>
                             <span><?php echo $mi->satuan ?></span><br>
                             <span style="font-size:12px">Rp <?php echo number_format($mi->harga, 0, ',', '.') ?></span>
-                            <input type="hidden" class="nama_unit" name="nama_unit[]" id="unit-<?= $mi->id ?>" value="<?php echo $mi->nama ?>">
-                            <input type="hidden" class="harga_unit" name="harga_unit[]" id="harga-<?= $mi->id ?>" value="<?php echo $mi->harga ?>">
+                            <input type="hidden" class="id_unit" name="id_unit[]" value="<?= $id_unit ?>">
+                            <input type="hidden" class="nama_unit" name="nama_unit[]" id="unit-<?= $id_unit ?>" value="<?php echo $nama_unit ?>">
+                            <input type="hidden" class="harga_unit" name="harga_unit[]" id="harga-<?= $id_unit ?>" value="<?php echo $harga_unit ?>">
                         </div>
                         <div class="input-group" style="width:35%;margin-top:3%">
                             <span class="input-group-btn">
@@ -253,7 +274,7 @@ and is wrapped around the whole page content, except for the footer in this exam
                                 </button>
                             </span>
                             
-                            <input type="text" name="quant[]" id="quant<?= $mi->id ?>" class="form-control input-number" value="<?= $tj['jumlah_unit']?>" min="0" max="9" style="margin-bottom: 0px;">
+                            <input type="text" name="quant[]" id="quant<?= $mi->id ?>" class="form-control input-number" value="<?= $jumlah_unit?>" min="0" max="9" style="margin-bottom: 0px;">
                             
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant<?= $mi->id ?>" style="padding: 5px;">
@@ -270,8 +291,8 @@ and is wrapped around the whole page content, except for the footer in this exam
             <span style="font-weight:bold;">Sofa Jumbo</span><br>
             <span>Per dudukan</span><br>
             <span style="font-size:12px">Rp 35.000</span>
-            <input type="hidden" class="nama_unit" name="nama_unit[]" id="unit-2" value="Sofa Jumbo">
-            <input type="hidden" class="harga_unit" name="harga_unit[]" id="harga-2" value="35000">
+            <input type="text" class="nama_unit" name="nama_unit[]" id="unit-2" value="Sofa Jumbo">
+            <input type="text" class="harga_unit" name="harga_unit[]" id="harga-2" value="35000">
           </div>
           <div class="input-group" style="width:35%;margin-top:3%">
             <span class="input-group-btn">
@@ -294,16 +315,17 @@ and is wrapped around the whole page content, except for the footer in this exam
             <fieldset>
                 <h2 class="fs-title">Pesan Jasa</h2>
                 <h3 class="fs-subtitle">Kapan Anda Membutuhkan Layanan ?</h3>
-                <input type="date" name="tanggal" id="tanggal" style="font-size: 25px;width: 91%;">
+                <input type="date" name="tanggal" id="tanggal" style="font-size: 25px;width: 91%;" value="<?= $qwe['tanggal']?>">
                 <h3 class="fs-subtitle">Pukul berapa Anda Membutuhkan Layanan ?</h3>
-                <input type="button" name="previous" class="btn btn-default btn-jam" value="08.00 - 11.00" />
-                <input type="button" name="previous" class="btn btn-default btn-jam" value="12.00 - 14.00" />
-                <input type="button" name="previous" class="btn btn-default btn-jam" value="15.00 - 18.00" />
+
+                <input type="button" name="jam" class="button button1 btn-jam" value="08.00 - 11.00" />
+                <input type="button" name="jam" class="button button1 btn-jam" value="12.00 - 14.00" />
+                <input type="button" name="jam" class="button button1 btn-jam" value="15.00 - 18.00" />
                 <input type="hidden" name="jam" id="jam" style="font-size: 25px;width: 91%;">
                 <br>
                 <hr>
                 <h3 class="fs-subtitle">Rincian Alamat</h3>
-                <textarea name="alamat" id="alamat" placeholder="Alamat"></textarea>
+                <textarea name="alamat" id="alamat" placeholder="Alamat"><?php echo $qwe['alamat']?></textarea>
                 <div id="map"></div>
                 <!-- <input type="text" name="twitter" placeholder="Twitter" />
     <input type="text" name="facebook" placeholder="Facebook" />
@@ -313,8 +335,8 @@ and is wrapped around the whole page content, except for the footer in this exam
             </fieldset>
             <fieldset>
                 <h2 class="fs-title">Kontak Penerima</h2>
-                <input type="text" name="nama" placeholder="Nama Penerima" />
-                <input type="text" name="no_telp" placeholder="Nomor Handphone" />
+                <input type="text" name="nama" placeholder="Nama Penerima" value="<?php echo $this->session->userdata('nama') ?>" readonly/>
+                <input type="text" name="no_telp" placeholder="Nomor Handphone" value="<?php echo $this->session->userdata('no_telp')?>"/>
                 <h2 class="fs-title">Detail Pesanan</h2>
                 <h3 class="fs-subtitle" style="text-decoration: underline;">Jasa yang di pilih</h3>
                 <!-- <span> Cuci Sofa Bed</span>
@@ -330,7 +352,7 @@ and is wrapped around the whole page content, except for the footer in this exam
                     Subtotal :
                     <!-- <span style="color:green;">Rp.175.000</span> -->
                     <span id="sub-total"></span>
-                    <input type="hidden" name="total" id="sub-total-input">
+                    <input type="text" name="total" id="sub-total-input">
                 </span>
                 <br>
                 <hr>

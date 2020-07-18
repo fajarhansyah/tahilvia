@@ -149,7 +149,7 @@
 <body>
 
   <!-- Navigation bar with social media icons -->
-
+  
 
   <!-- w3-content defines a container for fixed size centered content,
 and is wrapped around the whole page content, except for the footer in this example -->
@@ -206,6 +206,7 @@ and is wrapped around the whole page content, except for the footer in this exam
             <span style="font-weight:bold;"><?php echo $mi->nama ?></span><br>
             <span><?php echo $mi->satuan ?></span><br>
             <span style="font-size:12px">Rp <?php echo number_format($mi->harga, 0,',','.')?></span>
+            <input type="hidden" class="id_item" name="id_item[]" value="<?php echo $mi->id ?>">
             <input type="hidden" class="nama_unit" name="nama_unit[]" id="unit-<?= $mi->id ?>" value="<?php echo $mi->nama ?>">
             <input type="hidden" class="harga_unit" name="harga_unit[]" id="harga-<?= $mi->id ?>" value="<?php echo $mi->harga?>">
           </div>
@@ -273,8 +274,8 @@ and is wrapped around the whole page content, except for the footer in this exam
       </fieldset>
       <fieldset>
         <h2 class="fs-title">Kontak Penerima</h2>
-        <input type="text" name="nama" placeholder="Nama Penerima" />
-        <input type="text" name="no_telp" placeholder="Nomor Handphone" />
+        <input type="text" name="nama" placeholder="Nama Penerima" value="<?php echo $this->session->userdata('nama') ?>" readonly/>
+        <input type="text" name="no_telp" placeholder="Nomor Handphone" value="<?php echo $this->session->userdata('no_telp')?>"/>
         <h2 class="fs-title">Detail Pesanan</h2>
         <h3 class="fs-subtitle" style="text-decoration: underline;">Jasa yang di pilih</h3>
         <!-- <span> Cuci Sofa Bed</span>

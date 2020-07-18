@@ -7,18 +7,18 @@
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../assets2/table/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../assets2/table/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../assets2/table/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../assets2/table/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../assets2/table/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="../../../assets2/table/vendor/animate/animate.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../assets2/table/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../assets2/table/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../assets2/table/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="../../../assets2/table/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../assets2/table/css/util.css">
-    <link rel="stylesheet" type="text/css" href="../../assets2/table/css/main.css">
+	<link rel="stylesheet" type="text/css" href="../../../assets2/table/css/util.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets2/table/css/main.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <style>
         /*
@@ -135,6 +135,7 @@ p {
                 foreach ($pemesanan as $p) :
                     $no++;
                     $id_transaksi = $p['id'];
+                    
                     $transaksi_jasa = $this->db->query("SELECT * FROM tbl_transaksi_jasa WHERE id_transaksi = '$id_transaksi'")->result_array();
                 ?>
 					<div class="table100-body js-pscroll">
@@ -190,18 +191,18 @@ p {
                                 </td>
                                 <td class="cell100 column10" style="width: 10%;">
                                     <a href="<?php echo base_url().'step_pemesanan/edit/'. $p['id'] ?>" type="button"  class="btn-success btn-sm" style="padding:5px 19px;">Ubah</a><br><br>
-                                    <a href="#myModal" data-toggle="modal" class="btn-danger btn-sm">Batalkan</a>
+                                    <a href="<?php echo base_url().'dashboard_user/delete/'. $p['id'] ?>"  class="btn-danger btn-sm">Batalkan</a>
                                 </td>
-                                
                             </tr>
-                            <?php endforeach; ?>
+                             
+                      <?php endforeach; ?>
 							</tbody>
 						</table>
 					</div>
 				</div>
 
                 <div align="center">
-                <a href="index" class="btn red">Ke Halaman Utama</a>
+                <a href="http://localhost/tahilvia/index.php/dashboard_user" class="btn red">Ke Halaman Utama</a>
 				</div>
 			</div>
 		</div>
@@ -211,29 +212,16 @@ p {
 	<!-- Button HTML (to Trigger Modal) -->
     </div>
 
-    <!-- Modal HTML -->
-    <div id="myModal" class="modal fade">
-        <div class="modal-dialog modal-confirm">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <p style="color:#000000">Apakah kamu yakin untuk membatalkan pesananmu ? Proses ini tidak dapat di kembalikan.</p>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                    <a href="<?php echo base_url().'dashboard_user/delete/'. $p['id'] ?>"><button type="button" class="btn btn-danger">Iya</button></a>
-                </div>
-            </div>
-        </div>
-    </div>     
+      
 <!--===============================================================================================-->	
-	<script src="../../assets2/table/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../../../assets2/table/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../../assets2/table/vendor/bootstrap/js/popper.js"></script>
-	<script src="../../assets2/table/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../../assets2/table/vendor/bootstrap/js/popper.js"></script>
+	<script src="../../../assets2/table/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../../assets2/table/vendor/select2/select2.min.js"></script>
+	<script src="../../../assets2/table/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../../assets2/table/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="../../../assets2/table/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function(){
 			var ps = new PerfectScrollbar(this);
