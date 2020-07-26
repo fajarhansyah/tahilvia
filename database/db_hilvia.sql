@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 18 Jul 2020 pada 18.51
+-- Generation Time: 26 Jul 2020 pada 12.58
 -- Versi Server: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -74,6 +74,34 @@ INSERT INTO `menu_tambahan` (`id`, `id_transaksi`, `tidak_ada`, `noda_makanan`, 
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `rating`
+--
+
+CREATE TABLE IF NOT EXISTS `rating` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(300) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `rating` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `rating`
+--
+
+INSERT INTO `rating` (`id`, `nama`, `deskripsi`, `rating`) VALUES
+(8, 'Fajar', 'asfsfsdfdsfsdfsdfsdfsd', 1),
+(9, 'sdsd', 'sdsd', 0),
+(10, 'as', 'asdsadsa', 0),
+(11, 'user', 'sadasdada', 0),
+(12, 'sdsd', 'sdsds', 0),
+(13, 'sss', 'ss', 0),
+(14, 'aa', 'aaa', 5),
+(15, 'aaaa', 'aaa', 3),
+(16, 'dada', 'asdas', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tbl_transaksi`
 --
 
@@ -85,16 +113,17 @@ CREATE TABLE IF NOT EXISTS `tbl_transaksi` (
   `jam` varchar(255) NOT NULL,
   `alamat` varchar(255) NOT NULL,
   `total` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL
+  `status` varchar(255) NOT NULL,
+  `progres` varchar(255) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tbl_transaksi`
 --
 
-INSERT INTO `tbl_transaksi` (`id`, `nama`, `no_telp`, `tanggal`, `jam`, `alamat`, `total`, `status`) VALUES
-(6, 'user', '087865018862', '2020-07-16', '', 'aaaaa', 'NaN', ''),
-(7, 'user', '087865018862', '2020-07-09', '15.00 - 18.00', 'aaaa', '250000', '');
+INSERT INTO `tbl_transaksi` (`id`, `nama`, `no_telp`, `tanggal`, `jam`, `alamat`, `total`, `status`, `progres`) VALUES
+(6, 'user', '087865018862', '2020-07-16', '', 'aaaaa', 'NaN', 'setuju', 'Selesai'),
+(7, 'user', '087865018862', '2020-07-09', '15.00 - 18.00', 'aaaa', '250000', 'setuju', 'Selesai');
 
 -- --------------------------------------------------------
 
@@ -171,6 +200,12 @@ ALTER TABLE `menu_tambahan`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_transaksi`
 --
 ALTER TABLE `tbl_transaksi`
@@ -202,6 +237,11 @@ ALTER TABLE `menu_item`
 --
 ALTER TABLE `menu_tambahan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `rating`
+--
+ALTER TABLE `rating`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `tbl_transaksi`
 --
