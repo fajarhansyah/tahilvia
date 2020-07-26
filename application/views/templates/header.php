@@ -14,6 +14,13 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets2/css/imagehover.min.css">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets2/css/style.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .checked {
+  color: orange;
+}
+    </style>
   <!-- =======================================================
     Theme Name: Mentor
     Theme URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/

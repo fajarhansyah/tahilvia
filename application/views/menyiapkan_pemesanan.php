@@ -29,6 +29,7 @@
                 <th>Nama Unit</th>
                 <th>Jumlah Unit</th>
                 <th>Status</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -88,6 +89,22 @@
                     </ul>
                   </td>
                   <td><span class="tag tag-success">Approved</span></td>
+                  <?php
+                  $selesai = '';
+                  $textselesai = 'hidden';
+                  $progress = $p['progres'];
+                  if($progress == 'Selesai'){
+                      $selesai = 'hidden';
+                      $textselesai = '';
+                  }else if($progress = 'null'){
+                      $selesai = '';
+                      $textselesai = 'hidden';
+                  }
+                  ?>
+                  <td>
+                    <a href="menyiapkan_pemesanan/update/<?php echo $p['id']?>"><button class="btn btn-danger" <?php echo $selesai?>>Selesai</button></a>
+                    <span <?php echo $textselesai?>><?php echo $p['progres']?> </span>
+                  </td>
                 </tr>
               <?php endforeach; ?>
             </tbody>

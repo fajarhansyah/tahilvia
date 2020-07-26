@@ -23,4 +23,16 @@ class Menyiapkan_pemesanan extends CI_Controller {
 	$this->load->view('menyiapkan_pemesanan',$data);
     $this->load->view('templates_admin/footer');
 	}
+	public function update($id)
+  {
+    $data = array(
+      'progres'            => 'Selesai'
+
+    );
+    $where = array('id' => $id
+    );
+    $this->db->update('tbl_transaksi', $data,$where);
+   
+    redirect('menyiapkan_pemesanan');
+  }
 }
